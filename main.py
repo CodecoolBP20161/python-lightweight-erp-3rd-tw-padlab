@@ -59,7 +59,7 @@ def main():
         except KeyError as err:
             ui.print_error_message(err)
         # uncomment the next line when you implemented function ui.get_inputs
-        # choose()
+        choose()
 
 
 if __name__ == '__main__':
