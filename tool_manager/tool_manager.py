@@ -34,19 +34,17 @@ def start_module():
     elif option == '2':
         add('tools.csv')
     elif option == '3':
-        tool_manager.remove()
+        remove()
     elif option == '4':
-        tool_manager.update()
+        update()
     elif option == '5':
-        tool_manager.get_available_tools()
+        get_available_tools()
     elif option == '6':
-        tool_manager.get_average_durability_by_manufacturers()
+        get_average_durability_by_manufacturers()
     elif option == '0':
         return
     else:
         raise KeyError("There is no such option.")
-
-    pass
 
 
 # print the default table of records from the file
