@@ -20,8 +20,22 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 
 # start this manager by a menu
 def start_module():
-
-    # you code
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == 1:
+        show_table("customers.csv")
+    elif option == 2:
+        add()
+    elif option == 3:
+        remove()
+    elif option == 4:
+        update()
+    elif option == 5:
+        get_longest_name_id()
+    elif option == 6:
+        get_subscribed_emails()
+    else:
+        raise KeyError("There is no such option.")
 
     pass
 
@@ -29,7 +43,7 @@ def start_module():
 # print the default table of records from the file
 def show_table(table):
 
-    # your code
+    ui.print_table(get_table_from_file(table))
 
     pass
 
@@ -37,7 +51,13 @@ def show_table(table):
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    # your code
+    new_record = []
+    new_record.append(generate_random())
+    new_record.append(ui.get_inputs("What is the customer's name?: "))
+    new_record.append(ui.get_inputs("What is the customer's e-mail address?: "))
+    new_record.append(ui.get_inputs("Is the customer subscribed?(1/0 = yes/not): "))
+    table.append(new_record)
+    write_table_to_file(customers.csv, table)
 
     return table
 
@@ -45,7 +65,10 @@ def add(table):
 # Remove the record having the id @id_ from the @list, than return @table
 def remove(table, id_):
 
-    # your code
+    for x in table:
+        if x[0] == id_:
+            table.remove(x)
+    write_table_to_file(customers.csv, table)
 
     return table
 
@@ -54,7 +77,12 @@ def remove(table, id_):
 # than return @table
 def update(table, id_):
 
-    # your code
+    change = int(ui.get_inputs("Which data do you want update? (1-name; 2-e-mail; 3-subscription): "))
+    new_data = ui.get_inputs("New data: ")
+    for i in table:
+        if i == id_:
+            i[change] = new_data
+    write_table_to_file(customers.csv, table)
 
     return table
 
