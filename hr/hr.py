@@ -20,31 +20,56 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
-    # you code
+    list_of_functions = ["Show Table", "Add", "Remove", "Update", "The oldest: ", "Closest to average:"]
 
-    pass
+    ui.print_menu("HR", list_of_functions, "Back to menu")
+    chosen_number = ui.get_inputs(["Please enter a number: "], "")
+
+    option = chosen_number[0]
+
+    if option == '1':
+        show_table('persons.csv')
+    elif option == '2':
+        add('persons.csv')
+    elif option == '3':
+        hr.remove()
+    elif option == '4':
+        hr.update()
+    elif option == '5':
+        hr.get_oldest_person()
+    elif option == '6':
+        hr.get_persons_closest_to_average()
+    elif option == '0':
+        return
+    else:
+        raise KeyError("There is no such option.")
+
 
 
 # print the default table of records from the file
 def show_table(table):
 
-    # your code
+    list_of_titles = ["ID", "Name", "Date of birth"]
+    ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
+    start_module()
 
-    pass
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    # your code
+    list_of_titles = ["ID", "Name", "Date of birth"]
+    table_to_extend = data_manager.get_table_from_file(table)
+    table_to_extend.append(common.ask_for_data_to_add(table_to_extend, list_of_titles[1:]))
+    data_manager.write_table_to_file('tools.csv', table_to_extend)
 
-    return table
+    return table_to_extend
+
 
 
 # Remove the record having the id @id_ from the @list, than return @table
 def remove(table, id_):
 
-    # your code
 
     return table
 

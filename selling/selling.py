@@ -24,7 +24,7 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
-    inputs = input(["Please enter a number: "], "")
+    inputs = int(ui.get_inputs(["Please enter a number: "], ""))
     option = inputs[0]
     if option == 1:
         show_table()
@@ -48,7 +48,7 @@ def start_module():
 def show_table(table):
 
 
-    print_table(write_table_to_file(selling.csv, table))
+    ui.print_table(get_table_from_file(table))
 
 
 
@@ -58,9 +58,9 @@ def add(table):
 
     new_record = []
     new_record.append(generate_random)
-    new_record.append(input("What's the name of the game?"))
-    new_record.append(input("What is the selling price of the game?"))
-    new_record.append(input("What is the date the purchase was made?(month; day; year format pls)"))
+    new_record.append(ui.get_inputs("What's the name of the game?"))
+    new_record.append(ui.get_inputs("What is the selling price of the game?"))
+    new_record.append(ui.get_inputs("What is the date the purchase was made?(month; day; year format pls)"))
     table.append(new_record)
     write_table_to_file(selling.csv, table)
 
@@ -71,7 +71,7 @@ def add(table):
 def remove(table, id_):
 
     for i in table:
-        if i = id_:
+        if i == id_:
             table.remove(i)
     write_table_to_file(selling.csv)
 
@@ -83,10 +83,21 @@ def remove(table, id_):
 # than return @table
 def update(table, id_):
 
-    new_data
 
+    which_update = int(ui.get_inputs("what do you want to update? (1: title, 2: selling price, 3: date of purchase)"))
+    answer_1 = ui.get_inputs("The new title please: ")
+    answer_2 = ui.get_inputs("The new selling price please: ")
+    answer_3 = ui.get_inputs("Date of purchase please: ")
+    if which_update == 1:
+        table[which_update] = str(answer_1)
+    if which_update == 2:
+        table[which_update] = str(answer_2)
+    if which_update == 3:
+        table[which_update] = str(answer_3)
+    else:
+        ValueError ("Please enter 1, 2, or 3")
 
-
+    write_table_to_file(sellings.csv, id_)
     return table
 
 
@@ -98,7 +109,7 @@ def update(table, id_):
 # if there are more than one with the lowest price, return the first of descending alphabetical order
 def get_lowest_price_item_id(table):
 
-    # your code
+    
 
     pass
 
