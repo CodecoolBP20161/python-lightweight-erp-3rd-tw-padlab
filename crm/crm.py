@@ -23,7 +23,7 @@ def start_module():
     inputs = ui.get_inputs(["Please enter a number: "], "")
     option = inputs[0]
     if option == 1:
-        show_table()
+        show_table("customers.csv")
     elif option == 2:
         add()
     elif option == 3:
@@ -43,7 +43,7 @@ def start_module():
 # print the default table of records from the file
 def show_table(table):
 
-    print_table(write_table_to_file(customers.csv, table)
+    ui.print_table(get_table_from_file(table))
 
     pass
 
@@ -53,9 +53,9 @@ def add(table):
 
     new_record = []
     new_record.append(generate_random())
-    new_record.append(input("What is the customer's name?: "))
-    new_record.append(input("What is the customer's e-mail address?: "))
-    new_record.append(input("Is the customer subscribed?(1/0 = yes/not): "))
+    new_record.append(ui.get_inputs("What is the customer's name?: "))
+    new_record.append(ui.get_inputs("What is the customer's e-mail address?: "))
+    new_record.append(ui.get_inputs("Is the customer subscribed?(1/0 = yes/not): "))
     table.append(new_record)
     write_table_to_file(customers.csv, table)
 
@@ -66,7 +66,7 @@ def add(table):
 def remove(table, id_):
 
     for x in table:
-        if x[0] = id_:
+        if x[0] == id_:
             table.remove(x)
     write_table_to_file(customers.csv, table)
 
@@ -77,7 +77,12 @@ def remove(table, id_):
 # than return @table
 def update(table, id_):
 
-    # your code
+    change = int(ui.get_inputs("Which data do you want update? (1-name; 2-e-mail; 3-subscription): "))
+    new_data = ui.get_inputs("New data: ")
+    for i in table:
+        if i == id_:
+            i[change] = new_data
+    write_table_to_file(customers.csv, table)
 
     return table
 

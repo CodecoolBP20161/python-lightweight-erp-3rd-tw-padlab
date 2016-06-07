@@ -53,7 +53,6 @@ def show_table(table):
     list_of_titles = ["ID", "Game", "Studio", "Price", "In stock"]
     ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
     start_module()
-    pass
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
