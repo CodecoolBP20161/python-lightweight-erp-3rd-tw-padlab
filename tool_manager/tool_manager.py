@@ -22,7 +22,29 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
-    # you code
+    list_of_functions = ["Show Table", "Add", "Remove", "Update", "Available", "Average durability"]
+
+    ui.print_menu("Tools manager", list_of_functions, "Back to menu")
+    chosen_number = ui.get_inputs(["Please enter a number: "], "")
+
+    option = chosen_number[0]
+
+    if option == '1':
+        show_table('tools.csv')
+    elif option == '2':
+        add('tools.csv')
+    elif option == '3':
+        tool_manager.remove()
+    elif option == '4':
+        tool_manager.update()
+    elif option == '5':
+        tool_manager.get_available_tools()
+    elif option == '6':
+        tool_manager.get_average_durability_by_manufacturers()
+    elif option == '0':
+        return
+    else:
+        raise KeyError("There is no such option.")
 
     pass
 
@@ -30,15 +52,21 @@ def start_module():
 # print the default table of records from the file
 def show_table(table):
 
-    print_table(get_table_from_file(tools.csv))
-
+    list_of_titles = ["ID", "Tool", "Manufacturers", "Release", "Durability"]
+    ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
+    start_module()
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    # your code
+    list_of_titles = ["ID", "Tool", "Manufacturers", "Release", "Durability"]
+    table_to_extend = data_manager.get_table_from_file(table)
 
-    return table
+    table_to_extend.append(common.ask_for_data_to_add(table_to_extend, list_of_titles[1:]))
+
+    data_manager.write_table_to_file('tools.csv', table_to_extend)
+
+    return table_to_extend
 
 
 # Remove the record having the id @id_ from the @list, than return @table

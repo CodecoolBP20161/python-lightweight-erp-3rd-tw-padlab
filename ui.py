@@ -10,6 +10,7 @@
 # \-----------------------------------/
 def print_table(table, title_list):
 
+    print(('|') + (" | ".join(title_list)) + ('|'))
     for row in table:
         print(('|') + ('-') * 50 + ('|'))
         print(('|') + (" | ".join(row)) + ('|'))
@@ -32,8 +33,8 @@ def print_table(table, title_list):
 def print_menu(title, list_options, exit_message):
 
     print(title)
-    for number_of_option in range(1, len(list_options)):
-        print('(' + str(number_of_option) + ') ' + list_options[number_of_option])
+    for number_of_option in range(0, len(list_options)):
+        print('(' + str(number_of_option+1) + ') ' + list_options[number_of_option])
     print('(0) ' + exit_message)
 
     pass
@@ -43,7 +44,7 @@ def print_menu(title, list_options, exit_message):
 def get_inputs(list_titles, title):
     record = [0]
 
-    chosen_function = int(input(list_titles[0]))
+    chosen_function = input(list_titles[0])
 
     record[0] = chosen_function
 
