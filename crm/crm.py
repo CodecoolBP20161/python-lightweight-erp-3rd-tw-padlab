@@ -18,16 +18,28 @@ data_manager = SourceFileLoader("module.name", current_file_path + "/../data_man
 
 # start this manager by a menu
 def start():
-
-    # you code
-
-    pass
+    inputs = ui.get_inputs(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == 1:
+        show_table()
+    elif option == 2:
+        add()
+    elif option == 3:
+        remove()
+    elif option == 4:
+        update()
+    elif option == 5:
+        get_longest_name_id()
+    elif option == 6:
+        get_subscribed_emails()
+    else:
+        raise KeyError("There is no such option.")
 
 
 # print the default table of records from the file
 def show_table(table):
 
-    # your code
+    print_table(write_table_to_file(customers.csv, table)
 
     pass
 
@@ -35,7 +47,13 @@ def show_table(table):
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    # your code
+    new_record = []
+    new_record.append(generate_random())
+    new_record.append(input("What is the customer's name?: "))
+    new_record.append(input("What is the customer's e-mail address?: "))
+    new_record.append(input("Is the customer subscribed?(1/0 = yes/not): "))
+    table.append(new_record)
+    write_table_to_file(customers.csv, table)
 
     return table
 
@@ -43,7 +61,10 @@ def add(table):
 # Remove the record having the id @id_ from the @list, than return @table
 def remove(table, id_):
 
-    # your code
+    for x in table:
+        if x[0] = id_:
+            table.remove(x)
+    write_table_to_file(customers.csv, table)
 
     return table
 
