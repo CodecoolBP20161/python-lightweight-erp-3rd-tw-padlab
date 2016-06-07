@@ -29,4 +29,7 @@ def generate_random(table):
         if unique_code not in table:
             return unique_code
 
-    pass
+
+def ask_for_data_to_add(table):
+
+    

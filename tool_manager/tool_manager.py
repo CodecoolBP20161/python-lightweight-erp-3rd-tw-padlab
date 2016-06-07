@@ -30,9 +30,7 @@ def start():
 # print the default table of records from the file
 def show_table(table):
 
-    # your code
-
-    pass
+    print_table(get_table_from_file(tools.csv))
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table

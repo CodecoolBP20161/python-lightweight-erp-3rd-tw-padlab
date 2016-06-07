@@ -10,9 +10,12 @@
 # \-----------------------------------/
 def print_table(table):
 
-    # your code
+    for row in table:
+        print(('|') + ('-') * 50 + ('|'))
+        print(('|') + (" | ".join(row)) + ('|'))
 
-    pass
+    print(('|') + ('-') * 50 + ('|'))
+
 
 
 # An example output:
@@ -28,16 +31,21 @@ def print_table(table):
 # see the function call in main.py
 def print_menu(title, list_options, exit_message):
 
-    # your code
+    print(title)
+    for number_of_option in range(1, len(list_options)):
+        print('(' + str(number_of_option) + ') ' + list_options[number_of_option])
+    print('(0) ' + exit_message)
 
     pass
 
 
 # see the function call in main.py
 def get_inputs(list_titles, title):
-    record = []
+    record = [0]
 
-    # your code
+    chosen_function = int(input(list_titles[0]))
+
+    record[0] = chosen_function
 
     return record
 
@@ -45,6 +53,4 @@ def get_inputs(list_titles, title):
 # see the function call in main.py
 def print_error_message(message):
 
-    # your code
-
-    pass
+    print(message)
