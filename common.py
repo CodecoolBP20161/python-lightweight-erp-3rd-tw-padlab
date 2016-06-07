@@ -38,7 +38,7 @@ def ask_for_data_to_add(table, list_of_titles):
     all_data = [code]
 
     for title in list_of_titles:
-        to_all_data = ui.get_inputs(["Please enter a " + str(title) + ": "], "")
+        to_all_data = str("".join(ui.get_inputs(["Please enter a " + str(title) + ": "], "")))
         all_data.append(to_all_data)
 
 
