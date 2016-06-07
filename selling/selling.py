@@ -22,23 +22,45 @@ data_manager = SourceFileLoader("module.name", current_file_path + "/../data_man
 # start this manager by a menu
 def start():
 
-    # you code
+    inputs = input(["Please enter a number: "], "")
+    option = inputs[0]
+    if option == 1:
+        show_table()
+    elif option == 2:
+        add()
+    elif option == 3:
+        remove()
+    elif option == 4:
+        update()
+    elif option == 5:
+        get_lowest_price_item_id()
+    elif option == 6:
+        get_items_sold_between()
+    else:
+        raise KeyError("There is no such option.")
 
-    pass
+
 
 
 # print the default table of records from the file
 def show_table(table):
 
-    # your code
 
-    pass
+    print_table(write_table_to_file(selling.csv, table))
+
+
 
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    # your code
+    new_record = []
+    new_record.append(generate_random)
+    new_record.append(input("What's the name of the game?"))
+    new_record.append(input("What is the selling price of the game?"))
+    new_record.append(input("What is the date the purchase was made?(month; day; year format pls)"))
+    table.append(new_record)
+    write_table_to_file(selling.csv, table)
 
     return table
 
@@ -46,7 +68,11 @@ def add(table):
 # Remove the record having the id @id_ from the @list, than return @table
 def remove(table, id_):
 
-    # your code
+    for i in table:
+        if i = id_:
+            table.remove(i)
+    write_table_to_file(selling.csv)
+
 
     return table
 
@@ -55,7 +81,9 @@ def remove(table, id_):
 # than return @table
 def update(table, id_):
 
-    # your code
+    new_data
+
+
 
     return table
 
