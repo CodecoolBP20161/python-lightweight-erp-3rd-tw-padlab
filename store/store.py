@@ -22,9 +22,9 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
-    list_of_functions = ["Show Table", "Add", "Remove", "Update", "Available", "Average durability"]
+    list_of_functions = ["Show Table", "Add", "Remove", "Update", "Manufacturers", "Average by manufacturers"]
 
-    ui.print_menu("Tools manager", list_of_functions, "Back to menu")
+    ui.print_menu("Store manager", list_of_functions, "Back to menu")
     chosen_number = ui.get_inputs(["Please enter a number: "], "")
 
     option = chosen_number[0]

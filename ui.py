@@ -37,8 +37,6 @@ def print_menu(title, list_options, exit_message):
         print('(' + str(number_of_option+1) + ') ' + list_options[number_of_option])
     print('(0) ' + exit_message)
 
-    pass
-
 
 # see the function call in main.py
 def get_inputs(list_titles, title):
