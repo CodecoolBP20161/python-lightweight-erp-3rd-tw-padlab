@@ -8,7 +8,7 @@
 # |--------|----------------|---------|
 # |   1    |       fo       |    fps  |
 # \-----------------------------------/
-def print_table(table):
+def print_table(table, title_list):
 
     for row in table:
         print(('|') + ('-') * 50 + ('|'))
