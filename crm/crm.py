@@ -37,9 +37,10 @@ def start_module():
         id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
         update('customers.csv', id_)
     elif option == '5':
-        get_available_tools()
+        get_longest_name_id('customers.csv')
     elif option == '6':
-        get_average_durability_by_manufacturers()
+        table = data_manager.get_table_from_file('customers.csv')
+        get_subscribed_emails(table)
     elif option == '0':
         return
     else:
@@ -104,6 +105,16 @@ def get_longest_name_id(table):
 # return type: list of string (where string is like email+separator+name, separator=";")
 def get_subscribed_emails(table):
 
-    # your code
+    table_that_need_to_iterate_over = table
+    subscribed_people = []
+    for name_email_list in table_that_need_to_iterate_over:
+        if name_email_list[3] == "1":
+            subscribed_people.append([name_email_list[2], name_email_list[1]])
+    titles = ["e-mail", "name"]
+    ui.print_table(subscribed_people, titles)
+    list_to_return = []
+    for name_email_list in subscribed_people:
+        string_to_add = ";".join(name_email_list)
+        list_to_return.append(string_to_add)
 
-    pass
+    return list_to_return
