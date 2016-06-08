@@ -56,13 +56,97 @@ def ask_for_data_to_remove(table, id_):
 def ask_for_data_and_update(table, id_, list_of_titles):
 
     ui.print_menu("What do you want to update?", list_of_titles, "Back")
-    to_update = int(ui.get_inputs(["Please enter a number: "], "")[0])
-    update_to = str(ui.get_inputs(["Update data to: "], "")[0])
+    number_given = False
+    while not number_given:
+        try:
+            to_update = int(ui.get_inputs(["Please enter a number: "], "")[0])
+            if to_update > (-1) and to_update < 5:
+                number_given = True
+            else:
+                number_given = False
+        except:
+            number_given = False
     if to_update != 0:
+        update_to = str(ui.get_inputs(["Update data to: "], "")[0])
         for all_info in table:
             id_to_observe = "".join(all_info[0])
             if id_to_observe == id_:
                 all_info[to_update] = update_to
         return table
     else:
-        return
+        return table
+
+
+def min_of_list(list_to_observe):
+
+    minimum = list_to_observe[]
+
+    for number in list_to_observe:
+        if number < minimum:
+            minimum = number
+
+    return minimum
+
+
+def max_of_list(list_to_observe):
+
+    maximum = -100000000
+
+    for number in list_to_observe:
+        if number > maximum:
+            maximum = number
+
+    return maximum
+
+
+def len_of_list(list_to_observe):
+
+    length = 0
+
+    for item in list_to_observe:
+        length += 1
+
+    return length
+
+
+def sum_of_list(list_to_observe):
+
+    sum_of = 0
+
+    for number in list_to_observe:
+        sum_of += number
+
+    return sum_of
+
+
+def asc_sort_n(list_to_sort):
+
+    original_list = list_to_sort
+    sorted_list = []
+
+    for item in list_to_sort:
+        sorted_list.append(min_of_list(original_list))
+        original_list.remove(min_of_list(original_list))
+
+    return sorted_list
+
+
+def desc_sort_n(list_to_sort):
+
+    original_list = list_to_sort
+    sorted_list = []
+
+    for item in list_to_sort:
+        sorted_list.append(max_of_list(original_list))
+        original_list.remove(max_of_list(original_list))
+
+    return sorted_list
+
+
+def index_of_item(list_to_sort, item):
+
+    index_of_item = 0
+    for item in list_to_sort:
+        index_of_item += 1
+        if item == list_to_sort[index_of_item-1]:
+            return index_of_item

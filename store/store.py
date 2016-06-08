@@ -22,11 +22,9 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
-    list_of_functions = ["Show Table", "Add", "Remove", "Update", "Manufacturers", "Average by manufacturers"]
-
+    list_of_functions = ["Show Table", "Add", "Remove", "Update", "See by Manufacturer", "Average (Manufacturers)"]
     ui.print_menu("Store manager", list_of_functions, "Back to menu")
     chosen_number = ui.get_inputs(["Please enter a number: "], "")
-
     option = chosen_number[0]
 
     if option == '1':
@@ -34,9 +32,11 @@ def start_module():
     elif option == '2':
         add('games.csv')
     elif option == '3':
-        remove()
+        id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
+        remove('games.csv', id_)
     elif option == '4':
-        update()
+        id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
+        update('games.csv', id_)
     elif option == '5':
         get_counts_by_manufacturers(table)
     elif option == '6':
@@ -50,40 +50,41 @@ def start_module():
 # print the default table of records from the file
 def show_table(table):
 
-    list_of_titles = ["ID", "Game", "Studio", "Price", "In stock"]
+    list_of_titles = ["ID", "Title", "Manufacturers", "Price", "in stock"]
     ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
     start_module()
-    pass
-
 
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-    list_of_titles = ["ID", "Game", "Studio", "Price", "In stock"]
+    list_of_titles = ["ID", "Title", "Manufacturers", "Price", "in stock"]
     table_to_extend = data_manager.get_table_from_file(table)
-
     table_to_extend.append(common.ask_for_data_to_add(table_to_extend, list_of_titles[1:]))
-
     data_manager.write_table_to_file('games.csv', table_to_extend)
-
-    return table_to_extend
+    start_module()
 
 
 # Remove the record having the id @id_ from the @list, than return @table
 def remove(table, id_):
 
-    # your code
-
-    return table
+    table_to_shorten = data_manager.get_table_from_file(table)
+    try:
+        table_to_shorten.remove(common.ask_for_data_to_remove(table_to_shorten, id_))
+        data_manager.write_table_to_file('games.csv', table_to_shorten)
+    except:
+        ui.print_error_message("No game found with this ID!\n")
+    start_module()
 
 
 # Update the record in @table having the id @id_ by asking the new data from the user,
 # than return @table
 def update(table, id_):
 
-    # your code
-
-    return table
+    list_of_titles = ["ID", "Title", "Manufacturers", "Price", "in stock"]
+    table_to_update = data_manager.get_table_from_file(table)
+    updated_table = common.ask_for_data_and_update(table_to_update, id_, list_of_titles[1:])
+    data_manager.write_table_to_file('games.csv', updated_table)
+    start_module()
 
 
 # special functions:

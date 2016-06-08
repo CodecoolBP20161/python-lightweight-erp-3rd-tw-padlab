@@ -72,7 +72,7 @@ def remove(table, id_):
         table_to_shorten.remove(common.ask_for_data_to_remove(table_to_shorten, id_))
         data_manager.write_table_to_file('tools.csv', table_to_shorten)
     except:
-        ui.print_error_message("No game found with this ID!\n")
+        ui.print_error_message("No platform found with this ID!\n")
     start_module()
 
 
