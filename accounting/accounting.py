@@ -39,9 +39,11 @@ def start_module():
         id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
         update('items.csv', id_)
     elif option == '5':
-        get_available_tools()
+        table = data_manager.get_table_from_file('items.csv')
+        which_year_max(table)
     elif option == '6':
-        get_average_durability_by_manufacturers()
+        table = data_manager.get_table_from_file('items.csv')
+        avg_amount(table, "2015")
     elif option == '0':
         return
     else:
@@ -94,15 +96,54 @@ def update(table, id_):
 # return the answer (number)
 def which_year_max(table):
 
-    # your code
-
-    pass
+    year_15 = 0
+    year_16 = 0
+    table_to_check = table
+    for item in table_to_check:
+        if item[3] == '2015':
+            if item[4] == 'in':
+                year_15 += int(item[5])
+            else:
+                year_15 -= int(item[5])
+        elif item[3] == '2016':
+            if item[4] == 'in':
+                year_16 += int(item[5])
+            else:
+                year_16 -= int(item[5])
+    if year_15 > year_16:
+        year = 2015
+    elif year_16 > year_15:
+        year = 2016
+    ui.print_table([[str(year)]], ["Year of the highest profit"])
+    return year
 
 
 # the question: What is the average (per item) profit in a given year? [(profit)/(items count) ]
 # return the answer (number)
 def avg_amount(table, year):
 
-    # your code
+    in_list = []
+    out_list = []
 
-    pass
+    for account_of_a_date in table:
+        year_to_observe = account_of_a_date[3]
+        if year_to_observe == year:
+            in_or_out = account_of_a_date[4]
+            if in_or_out == "in":
+                amount = account_of_a_date[5]
+                in_list.append(amount)
+            else:
+                amount = account_of_a_date[5]
+                out_list.append(amount)
+
+    all_in = common.sum_of_list(in_list)
+    all_out = common.sum_of_list(out_list)
+
+    profit = all_in - all_out
+
+    if (common.len_of_list(in_list) + common.len_of_list(out_list)) != 0:
+        profit_avg = profit/(common.len_of_list(in_list) + common.len_of_list(out_list))
+    else:
+        profit_avg = 0
+        
+    return profit_avg

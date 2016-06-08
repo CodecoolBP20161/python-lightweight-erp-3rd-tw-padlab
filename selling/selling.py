@@ -40,6 +40,7 @@ def start_module():
         id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
         update('sellings.csv', id_)
     elif option == '5':
+        table = data_manager.get_table_from_file('sellings.csv')
         get_lowest_price_item_id(table)
     elif option == '6':
         get_items_sold_between(table, month_from, day_from, year_from, month_to, day_to, year_to)
@@ -98,11 +99,37 @@ def update(table, id_):
 # if there are more than one with the lowest price, return the first of descending alphabetical order
 def get_lowest_price_item_id(table):
 
+    prices = []
+    table_with_all_games = table
+    for list_with_all_info_of_one_game in table_with_all_games:
+        price_of_the_game = int(list_with_all_info_of_one_game[2])
+        prices.append(price_of_the_game)
+
+    Id_of_the_cheapest = []
+    for list_with_all_info_of_one_game in table_with_all_games:
+        price_of_the_game = int(list_with_all_info_of_one_game[2])
+        if price_of_the_game == common.min_of_list(prices):
+            Id_of_the_game = list_with_all_info_of_one_game[0]
+            name_of_the_game = list_with_all_info_of_one_game[1]
+            Id_of_the_cheapest.append([Id_of_the_game, name_of_the_game])
+
+    ids_and_names = dict(Id_of_the_cheapest)
+    ids_and_names_list = []
+
+    for item in ids_and_names:
+        ids_and_names_list.append(ids_and_names[item])
+
+    sorted_list = list(sorted(ids_and_names_list))
+
+    name_of_the_cheapest = sorted_list[0]
+
+    for list_with_all_info_of_one_game in table_with_all_games:
+        name_of_the_game = list_with_all_info_of_one_game[1]
+        if name_of_the_game == name_of_the_cheapest:
+            Id_of_the_game = list_with_all_info_of_one_game[0]
+            return Id_of_the_game
 
 
-
-
-    pass
 
 
 # the question: Which items are sold between two given dates ? (from_date < birth_date < to_date)
