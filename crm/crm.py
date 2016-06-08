@@ -39,7 +39,8 @@ def start_module():
     elif option == '5':
         get_longest_name_id('customers.csv')
     elif option == '6':
-        get_subscribed_emails('customers.csv')
+        table = data_manager.get_table_from_file('customers.csv')
+        get_subscribed_emails(table)
     elif option == '0':
         return
     else:
@@ -104,7 +105,7 @@ def get_longest_name_id(table):
 # return type: list of string (where string is like email+separator+name, separator=";")
 def get_subscribed_emails(table):
 
-    table_that_need_to_iterate_over = data_manager.get_table_from_file(table)
+    table_that_need_to_iterate_over = table
     subscribed_people = []
     for name_email_list in table_that_need_to_iterate_over:
         if name_email_list[3] == "1":
