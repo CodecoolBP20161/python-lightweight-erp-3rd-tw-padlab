@@ -56,9 +56,11 @@ def show_table(table):
     ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
     start_module()
 
+
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
+<<<<<<< HEAD
     list_of_titles = ["ID", "Title", "Price", "Month", "Day", "Year"]
     table_to_extend = data_manager.get_table_from_file(table)
     table_to_extend.append(common.ask_for_data_to_add(table_to_extend, list_of_titles[1:]))
@@ -97,7 +99,9 @@ def update(table, id_):
 # if there are more than one with the lowest price, return the first of descending alphabetical order
 def get_lowest_price_item_id(table):
 
-    # your code
+
+
+
 
     pass
 

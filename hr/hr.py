@@ -20,9 +20,17 @@ common = SourceFileLoader("common", current_file_path + "/../common.py").load_mo
 # start this manager by a menu
 def start_module():
 
+<<<<<<< HEAD
     list_of_functions = ["Show Table", "Add", "Remove", "Update", "Oldest", "Closest to AVG"]
     ui.print_menu("HR manager", list_of_functions, "Back to menu")
     chosen_number = ui.get_inputs(["Please enter a number: "], "")
+=======
+    list_of_functions = ["Show Table", "Add", "Remove", "Update", "The oldest: ", "Closest to average:"]
+
+    ui.print_menu("HR", list_of_functions, "Back to menu")
+    chosen_number = ui.get_inputs(["Please enter a number: "], "")
+
+>>>>>>> b22ed2dbcb7ace88cd29a1493d22e41ed45d8c5a
     option = chosen_number[0]
 
     if option == '1':
@@ -30,6 +38,7 @@ def start_module():
     elif option == '2':
         add('persons.csv')
     elif option == '3':
+<<<<<<< HEAD
         id_ = str(ui.get_inputs(["Please enter the ID: "], "")[0])
         remove('persons.csv', id_)
     elif option == '4':
@@ -39,10 +48,23 @@ def start_module():
         get_oldest_person(table)
     elif option == '6':
         get_persons_closest_to_average(table)
+=======
+        hr.remove()
+    elif option == '4':
+        hr.update()
+    elif option == '5':
+        hr.get_oldest_person()
+    elif option == '6':
+        hr.get_persons_closest_to_average()
+>>>>>>> b22ed2dbcb7ace88cd29a1493d22e41ed45d8c5a
     elif option == '0':
         return
     else:
         raise KeyError("There is no such option.")
+<<<<<<< HEAD
+=======
+
+>>>>>>> b22ed2dbcb7ace88cd29a1493d22e41ed45d8c5a
 
 
 # print the default table of records from the file

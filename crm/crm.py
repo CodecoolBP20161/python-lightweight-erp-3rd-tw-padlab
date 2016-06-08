@@ -53,6 +53,7 @@ def show_table(table):
     ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
     start_module()
 
+
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 

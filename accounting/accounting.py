@@ -51,7 +51,7 @@ def start_module():
 # print the default table of records from the file
 def show_table(table):
 
-    list_of_titles = ["Month", "Day", "Year", "Type", "Ammount"]
+    list_of_titles = ["ID", "Month", "Day", "Year", "Type", "Amount"]
     ui.print_table(data_manager.get_table_from_file(table), list_of_titles)
     start_module()
 
