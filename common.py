@@ -79,7 +79,7 @@ def ask_for_data_and_update(table, id_, list_of_titles):
 
 def min_of_list(list_to_observe):
 
-    minimum = list_to_observe[]
+    minimum = 10000000000000
 
     for number in list_to_observe:
         if number < minimum:

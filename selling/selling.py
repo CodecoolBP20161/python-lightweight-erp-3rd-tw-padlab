@@ -60,7 +60,6 @@ def show_table(table):
 # Ask a new record as an input from the user than add it to @table, than return @table
 def add(table):
 
-<<<<<<< HEAD
     list_of_titles = ["ID", "Title", "Price", "Month", "Day", "Year"]
     table_to_extend = data_manager.get_table_from_file(table)
     table_to_extend.append(common.ask_for_data_to_add(table_to_extend, list_of_titles[1:]))
